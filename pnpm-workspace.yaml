@@ -1,0 +1,7 @@
+# Prisma needs its postinstall to download the query engine; sharp needs its
+# platform binary. Without these, `prisma generate` and Next image optimization fail.
+allowBuilds:
+  '@prisma/client': true
+  '@prisma/engines': true
+  prisma: true
+  sharp: true
