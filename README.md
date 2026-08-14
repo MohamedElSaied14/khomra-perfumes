@@ -41,6 +41,14 @@
 
 ---
 
+## Screens
+
+| Sign in | Create account |
+| --- | --- |
+| ![Sign in](docs/screenshots/login.png) | ![Create account](docs/screenshots/register.png) |
+
+---
+
 ## Tech stack
 
 - **Next.js 15** (App Router, Server Actions, RSC) + **React 19**

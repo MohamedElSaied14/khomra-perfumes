@@ -1,0 +1,352 @@
+.cart { transform: translateX(105%); }
+[dir="rtl"] .cart { transform: translateX(-105%); }
+.cart.open,
+[dir="rtl"] .cart.open { transform: none; }
+html,
+body { overflow-x: clip; }
+
+.category-row {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 0 auto 70px;
+  flex-wrap: wrap;
+}
+
+.category-row button {
+  min-width: 100px;
+  min-height: 42px;
+  padding: 8px 22px;
+  border: 1px solid var(--line);
+  background: transparent;
+  cursor: pointer;
+  font-size: 10px;
+  transition: background .2s, color .2s;
+}
+
+.category-row button.active,
+.category-row button:hover {
+  background: var(--ink);
+  color: var(--bg);
+}
+
+.real-product {
+  height: 310px;
+  width: 100%;
+  display: grid;
+  place-items: center;
+  background: #f7f5f0;
+  overflow: hidden;
+}
+
+.real-product img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .55s cubic-bezier(.2,.8,.2,1);
+}
+
+.product:hover .real-product img { transform: scale(1.045); }
+
+.sizes {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+
+.sizes span {
+  border: 1px solid var(--line);
+  padding: 4px 7px;
+  font: 8px Arial, sans-serif;
+  color: var(--muted);
+}
+
+@media (max-width: 900px) {
+  .category-row { margin-bottom: 45px; gap: 6px; }
+  .category-row button { min-width: auto; padding: 7px 15px; }
+  .real-product { height: 230px; }
+}
+
+@media (max-width: 370px) {
+  .real-product { height: 290px; }
+}
+
+.mode-btn { border: 1px solid var(--line); background: transparent; min-height: 36px; padding: 0 12px; display: flex; align-items: center; gap: 7px; cursor: pointer; font-size: 9px; }
+.mode-btn svg { width: 14px; }
+.finder-action { border-top: 0; border-inline: 0; background: transparent; cursor: pointer; color: var(--ink); }
+.hero-photo { overflow: hidden; }
+.hero-photo>img { width: 100%; height: 100%; object-fit: cover; }
+.hero-tag { position: absolute; bottom: 28px; inset-inline-start: 30px; color: white; background: rgba(18,14,10,.72); padding: 10px 14px; font: 8px Arial,sans-serif; letter-spacing: .17em; }
+
+.dialog-shell,.dialog-backdrop { position: fixed; inset: 0; z-index: 110; }
+.dialog-backdrop { background: rgba(12,11,9,.66); backdrop-filter: blur(5px); }
+.checkout-dialog { position: fixed; z-index: 111; width: min(720px,calc(100% - 30px)); max-height: calc(100svh - 30px); overflow: auto; left: 50%; top: 50%; transform: translate(-50%,-50%); background: var(--paper); padding: clamp(28px,5vw,58px); box-shadow: 0 30px 90px rgba(0,0,0,.28); }
+.dialog-close { position: absolute; top: 15px; inset-inline-end: 15px; }
+.checkout-dialog h2,.admin-head h2 { font: 500 clamp(38px,5vw,58px)/1 "Cormorant Garamond","Noto Kufi Arabic"; margin: 13px 0 30px; }
+.checkout-dialog h3 { font-size: 11px; margin: 28px 0 14px; }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.form-grid .full { grid-column: 1/-1; }
+.form-grid label,.instapay-box label { font-size: 9px; display: flex; flex-direction: column; gap: 7px; color: var(--muted); }
+.form-grid input,.instapay-box input { width: 100%; min-height: 47px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); padding: 0 13px; outline: none; }
+.form-grid input:focus,.instapay-box input:focus { border-color: var(--ink); }
+.payment-options { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.payment-options label { position: relative; min-height: 92px; border: 1px solid var(--line); padding: 17px 17px 15px 42px; cursor: pointer; display: flex; flex-direction: column; gap: 8px; }
+[dir=rtl] .payment-options label { padding: 17px 42px 15px 17px; }
+.payment-options label.selected { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
+.payment-options input { position: absolute; top: 19px; inset-inline-start: 16px; accent-color: var(--accent); }
+.payment-options b { font-size: 11px; }.payment-options small { color: var(--muted); font-size: 8px; line-height: 1.7; }
+.instapay-box { background: color-mix(in srgb,var(--accent) 7%,var(--paper)); padding: 16px; margin-top: 10px; }
+.instapay-box p { font-size: 10px; margin: 0 0 13px; }.instapay-box strong { direction: ltr; display: inline-block; }
+.checkout-summary { border-block: 1px solid var(--line); margin: 25px 0 20px; padding: 16px 0; display: flex; justify-content: space-between; gap: 15px; }
+.checkout-summary span { font-size: 9px; color: var(--muted); display: flex; flex-direction: column; gap: 8px; }.checkout-summary b { color: var(--ink); font-size: 13px; }
+.submit-order { width: 100%; justify-content: space-between; }
+.submit-order:disabled { opacity: .6; cursor: not-allowed; transform: none; box-shadow: none; }
+.checkout-error { background: color-mix(in srgb,#b4442c 12%,var(--paper)); border: 1px solid color-mix(in srgb,#b4442c 45%,transparent); color: var(--ink); padding: 12px 15px; font-size: 10px; line-height: 1.9; margin: 0 0 14px; border-radius: 12px; }
+.order-success { min-height: 420px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+.order-success>span { display: grid; place-items: center; width: 65px; height: 65px; border-radius: 50%; color: white; background: #3f7651; }.order-success>span svg { width: 27px; }
+.order-success p { max-width: 430px; color: var(--muted); line-height: 2; font-size: 11px; margin-bottom: 25px; }
+
+.admin-panel { position: fixed; inset: 0; z-index: 130; background: #f4f1ea; color: #1b1b18; display: grid; grid-template-columns: 240px 1fr; direction: ltr; overflow: auto; }
+.admin-panel>aside { background: #1b1b18; color: #f4efe5; padding: 34px 20px; display: flex; flex-direction: column; gap: 8px; }
+.admin-panel>aside .logo { margin: 10px auto 55px; }.admin-panel>aside button { color: inherit; border: 0; background: transparent; padding: 13px; text-align: start; display: flex; align-items: center; gap: 11px; cursor: pointer; font-size: 10px; }.admin-panel>aside button.active { background: #343229; }.admin-panel>aside button svg { width: 16px; }.admin-panel>aside button span { margin-inline-start: auto; opacity: .6; }
+.admin-panel>main { padding: clamp(25px,5vw,65px); direction: var(--admin-dir,ltr); }.admin-head { display: flex; justify-content: space-between; align-items: flex-start; }.admin-head h2 { margin-bottom: 15px; }
+.stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 15px; margin: 25px 0; }.stats article { background: white; border: 1px solid #ddd7ca; padding: 25px; display: flex; flex-direction: column; gap: 15px; }.stats small { color: #777166; font-size: 9px; }.stats strong { font: 500 34px "Cormorant Garamond"; }.stats strong i { font: 9px Arial; }.stats span { color: #39734c; font-size: 8px; }
+.admin-table { background: white; border: 1px solid #ddd7ca; padding: 25px; }.admin-table>div { display: flex; justify-content: space-between; }.admin-table h3 { font-size: 13px; }.admin-table button { border: 0; background: transparent; text-decoration: underline; font-size: 9px; cursor: pointer; }.admin-table table { width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 10px; }.admin-table th,.admin-table td { text-align: start; padding: 15px 8px; border-top: 1px solid #ebe7de; }.admin-table th { color: #777166; font-size: 8px; }.admin-table select { border: 1px solid #d9d3c8; padding: 7px; background: #faf8f4; font-size: 9px; }
+
+@media(max-width:900px){.mode-btn span{display:none}.mode-btn{width:36px;padding:0;justify-content:center}.hero-photo{min-height:55svh}.hero-photo>img{position:absolute;inset:0}.form-grid,.payment-options{grid-template-columns:1fr}.checkout-dialog{padding:45px 20px 25px}.admin-panel{grid-template-columns:1fr}.admin-panel>aside{display:none}.admin-panel>main{padding:25px 15px}.stats{grid-template-columns:1fr}.admin-table{overflow-x:auto}.admin-table table{min-width:560px}.checkout-summary{flex-direction:column}.hero-tag{bottom:15px;inset-inline-start:15px}}
+
+/* Contemporary luxury finish */
+:root { --bg:#f3efe7; --paper:#fcfaf5; --ink:#171815; --muted:#746f65; --line:#d8d0c2; --accent:#a95f3f; --copper:#bd7a55; }
+:root[data-theme=dark] { --bg:#121310; --paper:#1b1c18; --ink:#f5efe4; --muted:#aaa397; --line:#393a33; --accent:#d38a67; --copper:#d99b73; }
+.icon,.lang { border:1px solid var(--line); border-radius:50%; transition:transform .2s,background .2s,border-color .2s; }
+.icon:hover,.lang:hover { transform:translateY(-2px); background:var(--ink); color:var(--bg); border-color:var(--ink); }
+.bag i { border:2px solid var(--paper); top:-4px; inset-inline-end:-4px; }
+.mode-btn { border-radius:999px; padding-inline:15px; }
+.primary { border-radius:999px; transition:transform .25s,box-shadow .25s; }
+.primary:hover { transform:translateY(-2px); box-shadow:0 12px 30px color-mix(in srgb,var(--ink) 22%,transparent); }
+.product-img,.real-product { border-radius:180px 180px 18px 18px; }
+.real-product { background:linear-gradient(145deg,#eee8dd,#fffdfa); }
+.badge { border-radius:999px; padding-inline:12px; }
+.heart { border-radius:50%; background:color-mix(in srgb,var(--paper) 78%,transparent); backdrop-filter:blur(7px); }
+.quick { left:12px;right:12px;bottom:12px;border-radius:999px; }
+.category-row button { border-radius:999px; }
+.hero-photo:after { content:""; position:absolute; inset:0; background:linear-gradient(180deg,transparent 55%,rgba(10,8,6,.44)); pointer-events:none; }
+.hero-tag { z-index:2; border-radius:999px; backdrop-filter:blur(10px); }
+.auth-fab { position:fixed; z-index:45; bottom:22px; inset-inline-start:22px; min-height:46px; padding:0 17px; border-radius:999px; background:var(--paper); border:1px solid var(--line); box-shadow:0 12px 40px rgba(0,0,0,.14); display:flex; align-items:center; gap:9px; font-size:9px; }
+.auth-fab svg { width:16px; color:var(--accent); }
+@media(max-width:900px){.mode-btn{border-radius:50%}.auth-fab{width:45px;padding:0;justify-content:center;bottom:14px;inset-inline-start:14px}.auth-fab span{display:none}.product-img,.real-product{border-radius:100px 100px 14px 14px}}
+
+/* Arabic typography needs more vertical breathing room than the Latin display face. */
+html[lang="ar"] .hero h1 {
+  line-height: 1.3;
+  letter-spacing: 0;
+  margin-block: 24px 30px;
+}
+
+html[lang="ar"] .hero h1 span + span,
+html[lang="ar"] .craft h2 span + span {
+  margin-top: .12em;
+}
+
+html[lang="ar"] .craft h2,
+html[lang="ar"] .section-head h2,
+html[lang="ar"] .newsletter h2,
+html[lang="ar"] .checkout-dialog h2,
+html[lang="ar"] .admin-head h2 {
+  line-height: 1.45;
+  letter-spacing: 0;
+}
+
+html[lang="ar"] .hero p,
+html[lang="ar"] .craft-copy p,
+html[lang="ar"] .newsletter p,
+html[lang="ar"] .order-success p {
+  line-height: 2.15;
+}
+
+html[lang="ar"] .product-info h3 {
+  line-height: 1.8;
+  margin-bottom: 5px;
+}
+
+html[lang="ar"] button,
+html[lang="ar"] .text-link,
+html[lang="ar"] .badge {
+  line-height: 1.7;
+}
+
+@media (max-width: 900px) {
+  html[lang="ar"] .hero h1 { font-size: 48px; line-height: 1.32; }
+  html[lang="ar"] .craft h2 { font-size: 48px; line-height: 1.45; }
+}
+
+.craft-photo { overflow:hidden; }
+.craft-photo>img { width:100%; height:100%; object-fit:cover; transition:transform .8s cubic-bezier(.2,.8,.2,1); }
+.craft-photo:hover>img { transform:scale(1.035); }
+.craft-photo:after { content:""; position:absolute; inset:0; background:linear-gradient(180deg,transparent 55%,rgba(15,10,6,.22)); pointer-events:none; }
+.craft-photo .seal { z-index:2; }
+
+.finder-dialog { position:fixed; z-index:111; width:min(820px,calc(100% - 30px)); min-height:560px; max-height:calc(100svh - 30px); overflow:auto; left:50%; top:50%; transform:translate(-50%,-50%); background:var(--paper); padding:clamp(30px,6vw,72px); box-shadow:0 30px 90px rgba(0,0,0,.3); }
+.finder-dialog>small { display:block; color:var(--muted); font-size:8px; margin-top:18px; }
+.finder-dialog h2 { font:500 clamp(40px,5vw,64px)/1.3 "Cormorant Garamond","Noto Kufi Arabic"; margin:25px 0 36px; max-width:650px; }
+.finder-progress { width:100%; height:2px; background:var(--line); margin-top:25px; }
+.finder-progress i { display:block; height:100%; background:var(--accent); transition:width .35s; }
+.finder-options { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.finder-options button { min-height:70px; border:1px solid var(--line); background:transparent; color:var(--ink); padding:15px 20px; display:flex; align-items:center; justify-content:space-between; cursor:pointer; text-align:start; transition:.25s; }
+.finder-options button:hover { background:var(--ink); color:var(--bg); transform:translateY(-2px); }
+.finder-options svg { width:17px; }
+.finder-back { border:0; background:transparent; color:var(--muted); text-decoration:underline; margin-top:22px; cursor:pointer; font-size:9px; }
+.finder-result { display:grid; grid-template-columns:1fr 1fr; gap:45px; align-items:center; margin-top:35px; }
+.finder-result-image { aspect-ratio:1; overflow:hidden; border-radius:180px 180px 18px 18px; background:var(--bg); }
+.finder-result-image img { width:100%; height:100%; object-fit:cover; }
+.finder-result small { color:var(--accent); font-size:9px; letter-spacing:.15em; }.finder-result h2 { margin:14px 0; }.finder-result p { color:var(--muted); font-size:11px; }.finder-result strong { display:block; margin:22px 0; }.finder-result .primary { width:100%; justify-content:space-between; }
+html[lang="ar"] .finder-dialog h2 { line-height:1.55; }
+@media(max-width:700px){.finder-dialog{min-height:auto;padding:55px 20px 28px}.finder-options,.finder-result{grid-template-columns:1fr}.finder-result{gap:22px}.finder-result-image{max-height:240px}.craft-photo{min-height:500px}.craft-photo>img{position:absolute;inset:0}}
+
+/* ── Ambient scent field ───────────────────────────────────────────────
+   Warm amber/oud glows drifting behind the whole store. The base colour moves to
+   <html> so the fixed gradient layer on <body> is not painted over by it. */
+:root { --glow-amber:#e7c49b; --glow-oud:#cf9a7c; --glow-ivory:#fbf4e8; --grain:.055; }
+:root[data-theme=dark] { --glow-amber:#6b431f; --glow-oud:#7d3f2b; --glow-ivory:#2b2519; --grain:.09; }
+
+/* The base field lives on <html> with fixed attachment so it is always painted,
+   independent of any stacking context the page creates. */
+html {
+  background-color:var(--bg);
+  background-image:
+    radial-gradient(46% 40% at 16% 8%, color-mix(in srgb,var(--glow-amber) 78%,transparent), transparent 68%),
+    radial-gradient(40% 34% at 86% 18%, color-mix(in srgb,var(--glow-oud) 62%,transparent), transparent 70%),
+    radial-gradient(50% 44% at 72% 86%, color-mix(in srgb,var(--glow-amber) 55%,transparent), transparent 70%),
+    radial-gradient(42% 38% at 8% 74%, color-mix(in srgb,var(--glow-oud) 42%,transparent), transparent 70%),
+    radial-gradient(70% 55% at 50% 46%, color-mix(in srgb,var(--glow-ivory) 62%,transparent), transparent 76%);
+  background-attachment:fixed;
+  background-repeat:no-repeat;
+}
+body { background:transparent; }
+
+/* A second, slowly drifting pair of glows layered on top for depth. */
+body:before {
+  content:""; position:fixed; inset:-25%; z-index:-2; pointer-events:none;
+  background:
+    radial-gradient(34% 30% at 28% 30%, color-mix(in srgb,var(--glow-oud) 40%,transparent), transparent 70%),
+    radial-gradient(38% 32% at 74% 62%, color-mix(in srgb,var(--glow-amber) 45%,transparent), transparent 70%);
+  filter:blur(50px);
+  animation:scent-drift 38s ease-in-out infinite alternate;
+}
+
+/* Fine paper grain keeps the large flat gradients from banding. */
+body:after {
+  content:""; position:fixed; inset:0; z-index:-1; pointer-events:none; opacity:var(--grain);
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+@keyframes scent-drift {
+  0%   { transform:translate3d(0,0,0) scale(1); }
+  50%  { transform:translate3d(2.5%,-2%,0) scale(1.06); }
+  100% { transform:translate3d(-2%,2.5%,0) scale(1.03); }
+}
+
+/* Let the field show through the large surfaces instead of flat panels. */
+.craft { background:color-mix(in srgb,var(--paper) 68%,transparent); backdrop-filter:blur(6px); }
+.product-img { background:color-mix(in srgb,var(--paper) 74%,transparent); }
+.login-page { background:transparent; }
+footer, .collection, .newsletter { background:transparent; }
+
+/* ── Search overlay ─────────────────────────────────────────────────── */
+.search-dialog { position:fixed; z-index:111; width:min(680px,calc(100% - 26px)); max-height:min(76svh,720px); display:flex; flex-direction:column; left:50%; top:12svh; transform:translateX(-50%); background:color-mix(in srgb,var(--paper) 92%,transparent); backdrop-filter:blur(18px); border:1px solid var(--line); border-radius:26px; box-shadow:0 34px 90px rgba(0,0,0,.32); overflow:hidden; }
+.search-field { display:flex; align-items:center; gap:12px; padding:6px 20px; border-bottom:1px solid var(--line); }
+.search-field>svg { width:18px; color:var(--accent); flex:none; }
+.search-field input { flex:1; min-height:60px; border:0; background:transparent; color:var(--ink); outline:0; font-size:14px; }
+.search-field input::-webkit-search-cancel-button { display:none; }
+.search-field .icon { width:32px; height:32px; flex:none; }
+.search-field .icon svg { width:14px; }
+.search-meta { display:flex; justify-content:space-between; align-items:center; gap:12px; padding:14px 22px 10px; color:var(--muted); font-size:9px; letter-spacing:.08em; }
+.search-meta small { opacity:.7; }
+.search-results { list-style:none; margin:0; padding:0 12px 14px; overflow:auto; }
+.search-results button { width:100%; display:grid; grid-template-columns:54px 1fr auto; align-items:center; gap:14px; padding:9px 10px; border:0; border-radius:16px; background:transparent; color:inherit; cursor:pointer; text-align:start; transition:background .2s,transform .2s; }
+.search-results button:hover, .search-results button:focus-visible { background:color-mix(in srgb,var(--accent) 10%,transparent); transform:translateX(0); outline:0; }
+.search-thumb { width:54px; height:62px; border-radius:34px 34px 8px 8px; overflow:hidden; background:var(--bg); display:block; }
+.search-thumb img { width:100%; height:100%; object-fit:cover; }
+.search-text { display:flex; flex-direction:column; gap:5px; min-width:0; }
+.search-text b { font-size:12px; font-weight:500; }
+.search-text small { color:var(--muted); font-size:9px; }
+.search-price { font-size:12px; white-space:nowrap; }
+.search-price i { font-style:normal; font-size:8px; color:var(--muted); }
+.search-empty { padding:40px 22px 50px; text-align:center; color:var(--muted); font-size:11px; }
+@media(max-width:900px){.search-dialog{top:8svh;max-height:82svh;border-radius:20px}.search-field input{min-height:52px;font-size:13px}.search-meta small{display:none}}
+
+/* Auth: floating account button + login page */
+.auth-fab-user { gap:10px; }
+.auth-fab-user img { width:26px; height:26px; border-radius:50%; object-fit:cover; }
+.auth-avatar { width:26px; height:26px; border-radius:50%; display:grid; place-items:center; background:var(--accent); color:#fff; font-size:11px; }
+.auth-fab-user form { display:flex; }
+.auth-fab-user button { border:0; background:transparent; color:var(--muted); cursor:pointer; display:grid; place-items:center; padding:4px; }
+.auth-fab-user button:hover { color:var(--accent); }
+.auth-fab-user button svg { width:15px; }
+
+.login-page { min-height:100svh; display:grid; grid-template-columns:46% 54%; background:var(--bg); }
+.login-page ~ .auth-fab { display:none; }
+.login-art { position:relative; overflow:hidden; background:#b8a386; }
+.login-art>img { width:100%; height:100%; object-fit:cover; }
+.login-art:after { content:""; position:absolute; inset:0; background:linear-gradient(180deg,rgba(12,9,6,.15) 35%,rgba(12,9,6,.78)); }
+.login-art-copy { position:absolute; z-index:2; inset-inline:clamp(24px,4vw,55px); bottom:clamp(30px,5vw,60px); color:#f6f0e6; }
+.login-art-copy h2 { font:500 clamp(34px,3.4vw,52px)/1.45 "Cormorant Garamond","Noto Kufi Arabic"; margin:14px 0 12px; }
+.login-art-copy p { font-size:11px; line-height:2.1; max-width:420px; opacity:.86; }
+.login-art-copy .eyebrow { color:#e8bda6; }
+
+.login-panel { display:flex; flex-direction:column; justify-content:center; align-items:flex-start; padding:clamp(34px,6vw,96px); }
+.login-panel .logo { margin-bottom:clamp(30px,5vw,60px); }
+.login-panel h1 { font:500 clamp(38px,4vw,60px)/1.4 "Cormorant Garamond","Noto Kufi Arabic"; margin:14px 0 12px; }
+.login-lead { color:var(--muted); font-size:11px; line-height:2.1; max-width:430px; margin:0 0 30px; }
+.login-panel form { width:min(400px,100%); }
+.google-btn { width:100%; min-height:54px; border:1px solid var(--line); border-radius:999px; background:var(--paper); color:var(--ink); display:flex; align-items:center; justify-content:center; gap:12px; cursor:pointer; font-size:11px; transition:transform .25s,box-shadow .25s,border-color .25s; }
+.google-btn:hover:not(:disabled) { transform:translateY(-2px); border-color:var(--ink); box-shadow:0 12px 30px color-mix(in srgb,var(--ink) 18%,transparent); }
+.google-btn:disabled { opacity:.55; cursor:not-allowed; }
+.login-error { width:min(400px,100%); background:color-mix(in srgb,var(--accent) 10%,var(--paper)); border:1px solid color-mix(in srgb,var(--accent) 45%,transparent); color:var(--ink); padding:13px 16px; font-size:10px; line-height:1.9; margin:0 0 18px; border-radius:14px; }
+.login-error code { direction:ltr; display:inline-block; font-size:9px; }
+.login-perks { list-style:none; padding:0; margin:30px 0 0; display:flex; flex-direction:column; gap:11px; }
+.login-perks li { position:relative; padding-inline-start:18px; color:var(--muted); font-size:10px; }
+.login-perks li:before { content:""; position:absolute; inset-inline-start:0; top:6px; width:6px; height:6px; border-radius:50%; background:var(--accent); }
+.login-note { color:var(--muted); font-size:9px; line-height:2; margin:28px 0 0; max-width:400px; }
+.login-back { font-size:10px; border-bottom:1px solid var(--ink); padding-bottom:4px; margin-top:22px; }
+.login-alt { font-size:10px; color:var(--muted); margin:16px 0 0; }
+.login-alt a { color:var(--accent); border-bottom:1px solid color-mix(in srgb,var(--accent) 50%,transparent); padding-bottom:2px; }
+
+/* Register page extras */
+.register-steps { counter-reset:step; list-style:none; padding:0; margin:32px 0 0; display:flex; flex-direction:column; gap:16px; width:min(430px,100%); }
+.register-steps li { counter-increment:step; position:relative; padding-inline-start:34px; display:flex; flex-direction:column; gap:5px; }
+.register-steps li:before { content:counter(step); position:absolute; inset-inline-start:0; top:-1px; width:22px; height:22px; border-radius:50%; border:1px solid var(--accent); color:var(--accent); display:grid; place-items:center; font-size:9px; }
+.register-steps b { font-size:11px; font-weight:500; }
+.register-steps small { color:var(--muted); font-size:9px; line-height:1.8; }
+.role-note { width:min(430px,100%); margin-top:28px; padding:15px 17px; border-radius:16px; background:color-mix(in srgb,var(--accent) 8%,var(--paper)); border:1px solid color-mix(in srgb,var(--accent) 28%,transparent); color:var(--muted); font-size:10px; line-height:2; }
+.role-note b { color:var(--ink); font-weight:500; }
+.role-note code { direction:ltr; display:inline-block; font-size:9px; color:var(--accent); }
+
+/* Welcome screen after a new account is created */
+.welcome-page { min-height:100svh; display:grid; place-items:center; padding:40px 20px; }
+.welcome-page ~ .auth-fab { display:none; }
+.welcome-card { width:min(560px,100%); text-align:center; background:color-mix(in srgb,var(--paper) 88%,transparent); backdrop-filter:blur(14px); border:1px solid var(--line); border-radius:28px; padding:clamp(34px,6vw,64px); box-shadow:0 30px 80px rgba(0,0,0,.14); display:flex; flex-direction:column; align-items:center; }
+.welcome-card .logo { margin-bottom:30px; }
+.welcome-card h1 { font:500 clamp(32px,4vw,50px)/1.45 "Cormorant Garamond","Noto Kufi Arabic"; margin:14px 0 14px; }
+.welcome-card p { color:var(--muted); font-size:11px; line-height:2.1; max-width:400px; margin:0 0 30px; }
+
+@media(max-width:900px){.login-page{grid-template-columns:1fr}.login-art{min-height:34svh}.login-panel{padding:40px 22px 60px}.login-panel .logo{margin-bottom:28px}}
+
+.real-product { cursor:pointer; }
+.real-product:after { content:"عرض التفاصيل"; position:absolute; left:50%; top:50%; transform:translate(-50%,-40%); background:rgba(20,18,15,.82); color:#fff; border-radius:999px; padding:10px 16px; font-size:8px; opacity:0; transition:.25s; pointer-events:none; }
+.product:hover .real-product:after { opacity:1; transform:translate(-50%,-50%); }
+.product-dialog { position:fixed; z-index:111; width:min(1040px,calc(100% - 30px)); max-height:calc(100svh - 30px); overflow:auto; left:50%; top:50%; transform:translate(-50%,-50%); background:var(--paper); display:grid; grid-template-columns:48% 52%; box-shadow:0 30px 90px rgba(0,0,0,.34); }
+.detail-image { min-height:690px; background:var(--bg); overflow:hidden; }
+.detail-image img { width:100%; height:100%; object-fit:cover; }
+.detail-copy { padding:clamp(35px,5vw,70px); }
+.detail-copy h2 { font:500 clamp(45px,5vw,70px)/1.2 "Cormorant Garamond","Noto Kufi Arabic"; margin:14px 0 8px; }
+.detail-family { color:var(--muted); font-size:10px; }
+.rating { display:flex; align-items:center; gap:8px; padding:18px 0; border-bottom:1px solid var(--line); }.rating span { color:#b77a36; letter-spacing:.1em; }.rating b { font-size:11px; }.rating small { color:var(--muted); font-size:8px; }
+.detail-description { color:var(--muted); font-size:10px; line-height:2; margin:20px 0; }
+.performance { display:grid; grid-template-columns:1fr 1fr; border-block:1px solid var(--line); }.performance span { padding:14px; display:flex; flex-direction:column; gap:6px; color:var(--muted); font-size:8px; }.performance span+span { border-inline-start:1px solid var(--line); }.performance b { color:var(--ink); font-size:12px; }
+.notes { padding:18px 0; }.notes>small,.size-picker small { color:var(--muted); font-size:8px; }.notes>div { display:flex; gap:7px; flex-wrap:wrap; margin-top:10px; }.notes span { border:1px solid var(--line); border-radius:999px; padding:6px 10px; font-size:8px; }
+.size-picker>div:first-child { display:flex; justify-content:space-between; margin-bottom:10px; }.size-picker>div:last-child { display:grid; grid-template-columns:repeat(4,1fr); gap:7px; }.size-picker button { border:1px solid var(--line); background:transparent; color:var(--ink); padding:10px 5px; cursor:pointer; display:flex; flex-direction:column; gap:6px; align-items:center; font-size:9px; }.size-picker button.active { border-color:var(--accent); box-shadow:inset 0 0 0 1px var(--accent); background:color-mix(in srgb,var(--accent) 7%,transparent); }.size-picker button small { font-size:7px; }
+.detail-buy { display:flex; justify-content:space-between; align-items:center; gap:15px; margin-top:25px; }.detail-buy>strong { font-size:20px; }.detail-buy>strong small { font-size:9px; }.detail-buy .primary svg { width:16px; }
+html[lang="ar"] .detail-copy h2 { line-height:1.45; }
+@media(max-width:760px){.product-dialog{grid-template-columns:1fr}.detail-image{min-height:300px;max-height:42svh}.detail-copy{padding:30px 20px}.size-picker>div:last-child{grid-template-columns:1fr 1fr}.detail-buy{align-items:stretch;flex-direction:column}.detail-buy .primary{width:100%;justify-content:space-between}.real-product:after{display:none}}
